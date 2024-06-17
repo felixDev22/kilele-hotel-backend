@@ -24,8 +24,8 @@ default: &default
 development:
   <<: *default
   database: hotel_booking_api_development
-  username: postgres
-  password: ad316
+  username: <%= ENV['kilele_hotel_backend_database_username'] %>
+  password: <%= ENV['kilele_hotel_backend_database_password'] %>
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
