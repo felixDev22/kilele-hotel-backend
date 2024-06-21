@@ -18,6 +18,16 @@ class BookingsController < ApplicationController
     render json: @bookings
   end
 
+  def check_availability
+    available_rooms = 30 - Booking.where(
+      'date_of_arrival <= ? AND date_of_departure >= ?',
+      params[:date_of_arrival],
+      params[:date_of_departure]
+    ).count
+    
+    render json: {available: available_rooms.positive? }
+  end
+
   private
 
   def booking_params
